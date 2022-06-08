@@ -25,7 +25,14 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'slug' => 'required',
+            'author' => 'required',
+            'category' => 'required'
+        ]);
+
+        return Book::create($request->all());
     }
 
     /**
@@ -36,7 +43,7 @@ class BookController extends Controller
      */
     public function show($id)
     {
-        
+        return Book::find($id);
     }
 
     /**
@@ -48,7 +55,9 @@ class BookController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $book = Book::find($id);
+        $book->update($request->all());
+        return $book;
     }
 
     /**
@@ -59,6 +68,18 @@ class BookController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return Book::destroy($id);
+    }
+
+    /**
+     * Search for the specified resource in storage.
+     *
+     * @param  int  $id
+     * @param str $title
+     * @return \Illuminate\Http\Response
+     */
+    public function search($title)
+    {
+        return Book::where('title', 'like', '%'.$title.'%')->get();
     }
 }
