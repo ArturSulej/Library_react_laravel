@@ -21,6 +21,11 @@ return new class extends Migration
             $table->unsignedInteger('category');
             $table->string('slug');
             $table->timestamps();
+
+            $table->foreign('category')->refrences('id')->on('category')->onDelete('restrict');
+            //CATEGORY
+            //$table->increments('id')
+            //$table->string('name')
         });
     }
 

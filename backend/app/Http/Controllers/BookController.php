@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
+
+    public function __construct()
+    {
+        //$this->middleware('auth:api');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -26,9 +31,9 @@ class BookController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required',
-            'slug' => 'required',
-            'author' => 'required',
+            'title' => 'required|string|max:255',
+            'slug' => 'required|string|max:50',
+            'author' => 'required|string|max:50',
             'category' => 'required'
         ]);
 
@@ -55,7 +60,20 @@ class BookController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'slug' => 'required|string|max:50',
+            'author' => 'required|string|max:50',
+            'category' => 'required'
+        ]);
+
         $book = Book::find($id);
+       // $book->title = $request->title;
+       // $book->description = $request->description;
+       // $book->slug = $request->slug;
+        //$book->author = $request->author;
+        //$book->category = $request->category;
+        //$book->save();
         $book->update($request->all());
         return $book;
     }

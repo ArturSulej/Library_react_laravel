@@ -32,9 +32,25 @@ Route::post('/register',[AuthController::class, 'register']);
 Route::post('/login',[AuthController::class, 'login']);
 
 // Protected routes
+/*
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/books',[BookController::class, 'store']);
     Route::put('/books/{id}',[BookController::class, 'update']);
     Route::delete('/books/{id}',[BookController::class, 'destroy']);
     Route::post('/logout',[AuthController::class, 'logout']);
 });
+*/
+
+Route::group(['middleware' => ['auth:api']], function () {
+    Route::post('/books',[BookController::class, 'store']);
+    Route::put('/books/{id}',[BookController::class, 'update']);
+    Route::delete('/books/{id}',[BookController::class, 'destroy']);
+    Route::post('/logout',[AuthController::class, 'logout']);
+});
+/*
+Route::controller(AuthController::class)->group(function(){
+    Route::post('/books',[BookController::class, 'store']);
+    Route::put('/books/{id}',[BookController::class, 'update']);
+    Route::delete('/books/{id}',[BookController::class, 'destroy']);
+    Route::post('/logout',[AuthController::class, 'logout']);
+});*/
