@@ -10,9 +10,6 @@ export default function InfoBook() {
 
     const params = useParams()
 
-    const swr = useSwr('/books', user.http)
-    const book = swr.data?.data || []
-
     const swr2 = useSwr('/category',user.http)
     const category = swr2.data?.data || []
 
@@ -21,12 +18,13 @@ export default function InfoBook() {
             <h1>List of books</h1>
             <div>
             <ol>
-                {category.map((category)=> 
-                <li  key={category.id}>{category.name}
+                {category.map((cat)=> 
+                <li  key={cat.id}>{cat.name}
                     <ul>
-                        {book.filter(book=>book.category === category.id).map((book)=><li key={book.id}>
-                        <Link to={`/infoBook/${book.id}`}>{book.title}</Link>
-                            </li>)}
+                        {cat.books.map((book)=>
+                        <li key={book.id}>
+                            <Link to={`/infoBook/${book.id}`}>{book.title}</Link>
+                        </li>)}
                     </ul>
                 </li>)}
             </ol>

@@ -13,9 +13,6 @@ export default function InfoBook() {
     const swr = useSwr('/books/'+params.id, user.http)
     const book = swr.data?.data
 
-    const swr2 = useSwr(()=>'/category/'+book.category,user.http)
-    const category = swr2.data?.data
-
     // Ustawienie formatu czasu i daty
     const dtf = new Intl.DateTimeFormat('pl-pl',{
         'year': 'numeric',
@@ -33,7 +30,7 @@ export default function InfoBook() {
                 <h6>Slug: {book?.slug}</h6>
                 <p>Description: {book?.description}</p>
                 <p>Author: {book?.author}</p>
-                <p>Category: {category?.name}</p>
+                <p>Category: {book?.book_category.name}</p>
                 <p>Created: {book && dtf.format(new Date(book?.created_at))}</p>
                 <p>Updated: {book && dtf.format(new Date(book?.updated_at))}</p>
 

@@ -15,7 +15,7 @@ class CategoryController extends Controller
 
     public function index()
     {
-        return BookCategory::all();
+        return BookCategory::with('books')->get();
     }
 
     public function store(Request $request)

@@ -1,6 +1,5 @@
 import { Routes, Route, Link } from 'react-router-dom';
 import Home from '../components/home';
-import Dashboard from '../components/dashboard';
 import AuthUser from '../components/AuthUser';
 import AddBook from '../components/Book/AddBook';
 import EditBook from '../components/Book/EditBook';

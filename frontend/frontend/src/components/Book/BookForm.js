@@ -35,7 +35,7 @@ export default function BookForm(props) {
                 <input type="text" name="slug" placeholder={props.initialData?.slug || "Slug"} required min='2' max='255'></input>
                 <select name="category">
                     {/* Przypisanie nazwy kategorii do klucza obcego w tabeli book */}
-                    <option disabled selected>{category.find((category)=>category.id === props.initialData?.category)?.name}</option>
+                    <option disabled defaultValue={0}>{category.find((category)=>category.id === props.initialData?.category)?.name}</option>
                     {category.map((category)=><option value={category.id} key={category.id}>{category.name}</option>)}
                 </select>
 

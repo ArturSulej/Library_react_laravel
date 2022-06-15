@@ -9,6 +9,7 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import Button from '@mui/material/Button';
 //import Paper from '@mui/material/Paper';
 
 export default function Home() {
@@ -29,9 +30,7 @@ export default function Home() {
             config.mutate('/books/'+element.id,{data:element},{revalidate: false})
         });
     },[books])
-    
-    // Utworzenie obiektu mapującego id na nazwy kategorii
-    let categoryById = Object.fromEntries(category.map(category=>[category.id,category.name]))
+
 
     // Część adresu url po znaku ?
     let [searchParams,setSearchParams] = useSearchParams()
@@ -54,7 +53,7 @@ export default function Home() {
             <br></br>
 
             {/* Wyświetlenie elementu jeżeli użytkownik jest zalogowany */}
-            {user.user && <Link to={'/addBook'}><button>Dodaj książkę</button></Link>}
+            {user.user && <Link to={'/addBook'}><Button variant='contained' sx={{ bgcolor: 'green' }}>Dodaj książkę</Button></Link>}
             <TableContainer >
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
@@ -71,7 +70,7 @@ export default function Home() {
                         {/* Stworzenie wiersza tabeli dla każdej z książek */}
                         {books.map((book)=><TableRow key={book.id}>
                             <TableCell component="th" scope="row"><Link to={`/infoBook/${book.id}`}>{book.title}</Link></TableCell>
-                            <TableCell>{categoryById[book.category]}</TableCell>
+                            <TableCell>{book.book_category.name}</TableCell>
                             {/* 
                                 Link - przekierowanie do innej strony
                                 Http - wysyła żądanie do backendu
@@ -79,19 +78,20 @@ export default function Home() {
                                 filter - usuwa wszystkie książki o podanym id
                             */}
                             {user.user && <>
-                            <TableCell><button><Link to={'/editBook/'+book.id}>Edytuj</Link></button></TableCell>
-                            <TableCell><button onClick={()=>{user.http('/books/'+book.id,{method: 'delete'})
+                            <TableCell><Button variant='outlined' color='info'><Link color="primary" to={'/editBook/'+book.id}>Edytuj</Link></Button></TableCell>
+                            <TableCell><Button variant='contained' color="error" onClick={()=>{user.http('/books/'+book.id,{method: 'delete'})
                                 config.mutate('/books', (data)=>({data:data.data?.filter(book2=>book2.id !== book.id)}), {revalidate: false})
-                            }}>Usuń</button></TableCell>
+                            }}>Usuń</Button></TableCell>
                         </>}
                     </TableRow>)}
                     </TableBody>
                 </Table>
             </TableContainer>
-            {user.user && <Link to={'/addBook'}><button>Dodaj książkę</button></Link>}
+            {user.user && <Link to={'/addBook'}><Button variant='contained' sx={{ bgcolor: 'green' }}>Dodaj książkę</Button></Link>}
             <br></br><br></br>
 
-            {user.user && <Link to={'/addCategory'}><button>Dodaj kategorię</button></Link>}         
+            
+            {user.user && <Link to={'/addCategory'}><Button variant='contained' sx={{ bgcolor: 'green' }}>Dodaj kategorię</Button></Link>}            
             <TableContainer >
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
@@ -109,16 +109,16 @@ export default function Home() {
                         <TableCell component="th" scope="row">{category.id}</TableCell>
                         <TableCell>{category.name}</TableCell>
                         {user.user && <>
-                        <TableCell><button><Link to={'/editCategory/'+category.id}>Edytuj</Link></button></TableCell>
-                        <TableCell><button onClick={()=>{user.http('/category/'+category.id,{method: 'delete'})
+                        <TableCell><Button variant='outlined' color='info'><Link color="primary" to={'/editCategory/'+category.id}>Edytuj</Link></Button></TableCell>
+                        <TableCell><Button variant='contained' color="error" onClick={()=>{user.http('/category/'+category.id,{method: 'delete'})
                             config.mutate('/category', (data)=>({data:data.data?.filter(category2=>category2.id !== category.id)}), {revalidate: false})
-                        }}>Usuń</button></TableCell>
+                        }}>Usuń</Button></TableCell>
                         </>}
                     </TableRow>)}
                     </TableBody>
                 </Table>
             </TableContainer>
-            {user.user && <Link to={'/addCategory'}><button>Dodaj kategorię</button></Link>}           
+            {user.user && <Link to={'/addCategory'}><Button variant='contained' sx={{ bgcolor: 'green' }}>Dodaj kategorię</Button></Link>}           
         </>
     )
 }

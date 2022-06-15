@@ -19,7 +19,8 @@ class BookController extends Controller
      */
     public function index()
     {
-        return Book::all();
+        //return Book::all();
+        return Book::with('book_category')->get();
     }
 
     /**
@@ -48,7 +49,7 @@ class BookController extends Controller
      */
     public function show($id)
     {
-        return Book::find($id);
+        return Book::with('book_category')->where('id','=',$id)->first();
     }
 
     /**
