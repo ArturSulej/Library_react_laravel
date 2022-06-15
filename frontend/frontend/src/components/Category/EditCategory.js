@@ -1,8 +1,8 @@
-import { useEffect, useState} from 'react'
 import AuthUser from '../AuthUser'
 import CategoryForm from './CategoryForm'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import {  useNavigate, useParams } from 'react-router-dom'
 import useSwr from 'swr'
+import Button from '@mui/material/Button'
 
 export default function EditCategory() {
     const navigate = useNavigate()
@@ -21,7 +21,7 @@ export default function EditCategory() {
                     })
             }}>
 
-                <button type="submit">Edit Category</button>
+            <Button variant='contained' sx={{ bgcolor: 'green' , mr: '20px', mb: '10px' }} type="submit">Edit Category</Button>
             </CategoryForm>
         </>
     )

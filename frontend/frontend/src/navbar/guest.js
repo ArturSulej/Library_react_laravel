@@ -11,7 +11,7 @@ function Guest() {
             <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
                 <ul className="navbar-nav">
                     <li className="nav-item">
-                        <Link className="nav-link" to="/">Home</Link>
+                        <Link className="nav-link" to="/">Table</Link>
                     </li>
                     <li className="nav-item">
                         <Link className="nav-link" to="/listBook">List</Link>

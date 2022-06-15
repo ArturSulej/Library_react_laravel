@@ -1,11 +1,9 @@
-import { useEffect, useState} from 'react'
 import AuthUser from '../AuthUser'
-import BookForm from './BookForm'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import useSwr from 'swr'
+import { Card, CardContent, Typography } from '@mui/material'
 
 export default function InfoBook() {
-    const navigate = useNavigate()
     const user = AuthUser()
 
     const params = useParams()
@@ -26,13 +24,27 @@ export default function InfoBook() {
         <>
             <h1>Info</h1>
             <div>
-                <h4>Title : {book?.title}</h4>
-                <h6>Slug: {book?.slug}</h6>
-                <p>Description: {book?.description}</p>
-                <p>Author: {book?.author}</p>
-                <p>Category: {book?.book_category.name}</p>
-                <p>Created: {book && dtf.format(new Date(book?.created_at))}</p>
-                <p>Updated: {book && dtf.format(new Date(book?.updated_at))}</p>
+                <Card sx={{ minWidth: 275 }}>
+                    <CardContent>
+                        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                            {book?.slug} 
+                        </Typography>
+                        <Typography variant='h5' component='div'>
+                            {book?.title}
+                        </Typography>
+                        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                            Category : {book?.book_category.name}
+                        </Typography>
+                        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                            Author : {book?.author}
+                        </Typography>
+                        <Typography variant="body2">
+                            {book?.description} <br/> <br/>
+                            Created: {book && dtf.format(new Date(book?.created_at))} <br />
+                            Updated: {book && dtf.format(new Date(book?.updated_at))}
+                        </Typography>
+                    </CardContent>
+                </Card>
 
             </div>
         </>

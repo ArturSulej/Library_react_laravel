@@ -1,8 +1,8 @@
-import { useEffect, useState} from 'react'
 import AuthUser from '../AuthUser'
 import BookForm from './BookForm'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import useSwr from 'swr'
+import Button from '@mui/material/Button'
 
 export default function EditBook() {
     const navigate = useNavigate()
@@ -21,7 +21,7 @@ export default function EditBook() {
                     })
             }}>
 
-                <button type="submit">Edit Book</button>
+            <Button variant='contained' sx={{ bgcolor: 'green' , mr: '20px', mb: '10px' }} type="submit">Edit Book</Button>
             </BookForm>
         </>
     )

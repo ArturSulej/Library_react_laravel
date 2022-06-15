@@ -1,7 +1,7 @@
-import {Fragment, useEffect, useState} from 'react'
+import { useEffect} from 'react'
 import * as React from 'react'
 import AuthUser from './AuthUser'
-import { Link, Navigate, useSearchParams, useNavigate } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import useSwr, {useSWRConfig} from 'swr'
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -10,7 +10,6 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Button from '@mui/material/Button';
-//import Paper from '@mui/material/Paper';
 
 export default function Home() {
     // Dostęp do axiosa
@@ -43,17 +42,24 @@ export default function Home() {
         if(searchParams.has('categoryAdded')){
             alert('Category Added!')
         }
+        if(searchParams.has('categoryEdited')){
+            alert('Category Changed!')
+        }
+        if(searchParams.has('bookEdited')){
+            alert('Book Changed!')
+        }
         // Czyszczenie adresu url
         setSearchParams({},{replace: true})
     },[searchParams])
 
     return( 
         <>
-            <h1>Home page</h1>
+            <h1>Books and Categories</h1>
             <br></br>
-
+            <h3>Books</h3> <br/>
             {/* Wyświetlenie elementu jeżeli użytkownik jest zalogowany */}
-            {user.user && <Link to={'/addBook'}><Button variant='contained' sx={{ bgcolor: 'green' }}>Dodaj książkę</Button></Link>}
+            {user.user && <Link to={'/addBook'}><Button variant='contained' sx={{ bgcolor: 'green' }}>Dodaj książkę</Button></Link>} 
+            <br/>
             <TableContainer >
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
@@ -87,11 +93,13 @@ export default function Home() {
                     </TableBody>
                 </Table>
             </TableContainer>
+            <br/>
             {user.user && <Link to={'/addBook'}><Button variant='contained' sx={{ bgcolor: 'green' }}>Dodaj książkę</Button></Link>}
-            <br></br><br></br>
+            <br/><br/><br/><br/>
 
-            
-            {user.user && <Link to={'/addCategory'}><Button variant='contained' sx={{ bgcolor: 'green' }}>Dodaj kategorię</Button></Link>}            
+            <h3>Categories</h3> <br/>
+            {user.user && <Link to={'/addCategory'}><Button variant='contained' sx={{ bgcolor: 'green' }}>Dodaj kategorię</Button></Link>}
+            <br/>            
             <TableContainer >
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
@@ -117,8 +125,9 @@ export default function Home() {
                     </TableRow>)}
                     </TableBody>
                 </Table>
-            </TableContainer>
-            {user.user && <Link to={'/addCategory'}><Button variant='contained' sx={{ bgcolor: 'green' }}>Dodaj kategorię</Button></Link>}           
+            </TableContainer> 
+            <br/>
+            {user.user && <Link to={'/addCategory'}><Button variant='contained' sx={{ bgcolor: 'green' }}>Dodaj kategorię</Button></Link>}         
         </>
     )
 }

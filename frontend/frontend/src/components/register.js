@@ -1,6 +1,5 @@
 import { useState } from "react"
 import { useNavigate } from 'react-router-dom';
-import axios from "axios"
 import AuthUser from './AuthUser.js';
 
 
@@ -12,7 +11,7 @@ export default function Register() {
     const [email,setEmail] = useState();
     const [password,setPassword] = useState();
 
-    const[error, setError] = useState();
+    //const[error, setError] = useState();
 
     const submitForm = (form) =>{
         // api call

@@ -1,7 +1,7 @@
-import { useEffect, useState} from 'react'
 import AuthUser from '../AuthUser'
 import BookForm from './BookForm'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import Button from '@mui/material/Button'
 
 export default function AddBook() {
     // Pozwala na zmianę adresu URL
@@ -17,7 +17,7 @@ export default function AddBook() {
                     })
             }}>
 
-                <button type="submit">Add Book</button>
+            <Button variant='contained' sx={{ bgcolor: 'green', mr: '20px', mb: '10px' }} type="submit">Add Book</Button>
             </BookForm>
         </>
     )

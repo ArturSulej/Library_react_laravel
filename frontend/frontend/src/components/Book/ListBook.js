@@ -1,14 +1,9 @@
-import { useEffect, useState} from 'react'
 import AuthUser from '../AuthUser'
-import BookForm from './BookForm'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import useSwr from 'swr'
 
 export default function InfoBook() {
-    const navigate = useNavigate()
     const user = AuthUser()
-
-    const params = useParams()
 
     const swr2 = useSwr('/category',user.http)
     const category = swr2.data?.data || []

@@ -1,7 +1,7 @@
-import { useEffect, useState} from 'react'
 import AuthUser from '../AuthUser'
 import CategoryForm from './CategoryForm'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import Button from '@mui/material/Button'
 
 export default function AddCategory() {
 
@@ -17,7 +17,7 @@ export default function AddCategory() {
                     })
             }}>
 
-                <button type="submit">Add Category</button>
+            <Button variant='contained' sx={{ bgcolor: 'green' , mr: '20px', mb: '10px' }} type="submit">Add Category</Button>
             </CategoryForm>
         </>
     )
