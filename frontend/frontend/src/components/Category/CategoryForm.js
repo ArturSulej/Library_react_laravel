@@ -28,7 +28,7 @@ export default function CategoryForm(props) {
                             <div className="form-group mt-3">
                                 {props.children}
                                 <Button variant='outlined' color='secondary' sx={{ mr: '20px', mb: '10px' }} type="reset">Clear</Button>
-                                <Button variant="outlined" color="error" sx={{ mb: '10px' }}><Link to={'/'}>Cancel</Link></Button>
+                                <Button variant="contained" color="error" sx={{ mb: '10px' }}><Link style={{ textDecoration: 'none', color: 'white' }} to={'/'}>Cancel</Link></Button>
                             </div>  
                         </form>
                     </div>

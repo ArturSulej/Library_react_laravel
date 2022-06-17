@@ -58,7 +58,7 @@ export default function Home() {
             <br></br>
             <h3>Books</h3> <br/>
             {/* Wyświetlenie elementu jeżeli użytkownik jest zalogowany */}
-            {user.user && <Link to={'/addBook'}><Button variant='contained' sx={{ bgcolor: 'green' }}>Dodaj książkę</Button></Link>} 
+            {user.user && <Link style={{ textDecoration: 'none' }} to={'/addBook'}><Button variant='contained' sx={{ bgcolor: 'green' }}>Dodaj książkę</Button></Link>} 
             <br/>
             <TableContainer >
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -75,7 +75,7 @@ export default function Home() {
                     <TableBody>
                         {/* Stworzenie wiersza tabeli dla każdej z książek */}
                         {books.map((book)=><TableRow key={book.id}>
-                            <TableCell component="th" scope="row"><Link to={`/infoBook/${book.id}`}>{book.title}</Link></TableCell>
+                            <TableCell component="th" scope="row"><Link style={{ color: 'black' }} to={`/infoBook/${book.id}`}>{book.title}</Link></TableCell>
                             <TableCell>{book.book_category.name}</TableCell>
                             {/* 
                                 Link - przekierowanie do innej strony
@@ -84,7 +84,7 @@ export default function Home() {
                                 filter - usuwa wszystkie książki o podanym id
                             */}
                             {user.user && <>
-                            <TableCell><Button variant='outlined' color='info'><Link color="primary" to={'/editBook/'+book.id}>Edytuj</Link></Button></TableCell>
+                            <TableCell><Button variant='contained' color='info'><Link style={{ textDecoration: 'none', color: 'white' }} to={'/editBook/'+book.id}>Edytuj</Link></Button></TableCell>
                             <TableCell><Button variant='contained' color="error" onClick={()=>{user.http('/books/'+book.id,{method: 'delete'})
                                 config.mutate('/books', (data)=>({data:data.data?.filter(book2=>book2.id !== book.id)}), {revalidate: false})
                             }}>Usuń</Button></TableCell>
@@ -94,11 +94,11 @@ export default function Home() {
                 </Table>
             </TableContainer>
             <br/>
-            {user.user && <Link to={'/addBook'}><Button variant='contained' sx={{ bgcolor: 'green' }}>Dodaj książkę</Button></Link>}
+            {user.user && <Link style={{ textDecoration: 'none' }} to={'/addBook'}><Button variant='contained' sx={{ bgcolor: 'green' }}>Dodaj książkę</Button></Link>}
             <br/><br/><br/><br/>
 
             <h3>Categories</h3> <br/>
-            {user.user && <Link to={'/addCategory'}><Button variant='contained' sx={{ bgcolor: 'green' }}>Dodaj kategorię</Button></Link>}
+            {user.user && <Link style={{ textDecoration: 'none' }} to={'/addCategory'}><Button variant='contained' sx={{ bgcolor: 'green' }}>Dodaj kategorię</Button></Link>}
             <br/>            
             <TableContainer >
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -117,7 +117,7 @@ export default function Home() {
                         <TableCell component="th" scope="row">{category.id}</TableCell>
                         <TableCell>{category.name}</TableCell>
                         {user.user && <>
-                        <TableCell><Button variant='outlined' color='info'><Link color="primary" to={'/editCategory/'+category.id}>Edytuj</Link></Button></TableCell>
+                        <TableCell><Button variant='contained' color='info'><Link style={{ textDecoration: 'none', color:'white' }} to={'/editCategory/'+category.id}>Edytuj</Link></Button></TableCell>
                         <TableCell><Button variant='contained' color="error" onClick={()=>{user.http('/category/'+category.id,{method: 'delete'})
                             config.mutate('/category', (data)=>({data:data.data?.filter(category2=>category2.id !== category.id)}), {revalidate: false})
                         }}>Usuń</Button></TableCell>
@@ -127,7 +127,7 @@ export default function Home() {
                 </Table>
             </TableContainer> 
             <br/>
-            {user.user && <Link to={'/addCategory'}><Button variant='contained' sx={{ bgcolor: 'green' }}>Dodaj kategorię</Button></Link>}         
+            {user.user && <Link style={{ textDecoration: 'none' }} to={'/addCategory'}><Button variant='contained' sx={{ bgcolor: 'green' }}>Dodaj kategorię</Button></Link>}         
         </>
     )
 }

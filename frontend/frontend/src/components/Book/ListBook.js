@@ -12,14 +12,16 @@ export default function InfoBook() {
         <>
             <h1>List of books</h1>
             <div>
-            <ol>
+            <ol class='list-group list-group-numbered'>
                 {category.map((cat)=> 
-                <li  key={cat.id}>{cat.name}
-                    <ul>
+                <li class="list-group-item list-group-item-dark" key={cat.id}><b>{cat.name}</b>
+                    <ul class="list-group list-group-flush">
                         {cat.books.map((book)=>
-                        <li key={book.id}>
-                            <Link to={`/infoBook/${book.id}`}>{book.title}</Link>
-                        </li>)}
+                        <Link style={{ textDecoration: 'none' }} class="link-dark" to={`/infoBook/${book.id}`}>
+                            <li class="list-group-item list-group-item-secondary" key={book.id}>
+                                {book.title}
+                            </li>
+                        </Link>)}
                     </ul>
                 </li>)}
             </ol>
